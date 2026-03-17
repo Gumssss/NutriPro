@@ -14,7 +14,7 @@ demo = gr.Interface(
             label="Dietary restrictions",
             placeholder="E.g., vegan, gluten-free, low sugar…"),
         gr.Textbox(
-            label="Enter your meal preferences or dietary requirements",
+            label="Enter your meal preferences",
             placeholder="e.g., high-protein, italian, low-carb, spicy...")
     ],
     outputs=gr.Textbox(label="Suggested Recipes"),
