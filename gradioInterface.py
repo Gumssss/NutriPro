@@ -9,9 +9,13 @@ demo = gr.Interface(
     fn=suggest_recipes,
     inputs=[
         gr.Image(label="Upload a photo of the ingredients you have"),
+        gr.Radio(choices=["Breakfast", "Lunch", "Dinner", "Snack", "Other"], label="Meal type"),
+        gr.Textbox(
+            label="Dietary restrictions",
+            placeholder="E.g., vegan, gluten-free, low sugar…"),
         gr.Textbox(
             label="Enter your meal preferences or dietary requirements",
-            placeholder="e.g., vegetarian, low-carb, spicy, gluten-free...")
+            placeholder="e.g., high-protein, italian, low-carb, spicy...")
     ],
     outputs=gr.Textbox(label="Suggested Recipes"),
     title="Recipe Suggestion Assistant 🍽️",

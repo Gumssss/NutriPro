@@ -2,7 +2,7 @@
 #Change as needed
 #The string that is returned will be output to the user
 
-def suggest_recipes(food_image, meal_preferences):    
+def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preferences):    
     #food_image: PIL image object
     #meal_preferences: string
     
