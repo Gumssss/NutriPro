@@ -2,7 +2,7 @@ import json
 from typing import List, Optional, Union
 from langchain_aws import ChatBedrockConverse
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from utils import extract_first_json, encode_image, Ingredient, AgentState
+from .utils import extract_first_json, encode_image, Ingredient, AgentState
 
 vision_model = ChatBedrockConverse(
     model="amazon.nova-pro-v1:0",

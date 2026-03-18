@@ -3,9 +3,9 @@ import json
 from typing import List, Union
 from langgraph.graph import StateGraph, START, END
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from utils import AgentState, Ingredient
-from food_image_converter import vision_node
-from recipe_agent import recipes_node
+from .utils import AgentState, Ingredient
+from .food_image_converter import vision_node
+from .recipe_agent import recipes_node
 
 def build_master_graph():
     graph = StateGraph(AgentState)
