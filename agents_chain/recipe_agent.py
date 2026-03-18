@@ -41,10 +41,13 @@ def run_recipe_generator_local(user_info: dict, ingredients: List[Ingredient], c
     ingredients_json = json.dumps(ingredients, ensure_ascii=False)
     user_info_text = (
         f"User details:\n"
-        f"- Height: {user_info.get('height_cm')}\n"
-        f"- Weight: {user_info.get('weight_kg')}\n"
+        f"- Age: {user_info.get('age')} years\n"
+        f"- Gender: {user_info.get('gender')}\n"
+        f"- Height: {user_info.get('height_cm')}cm\n"
+        f"- Weight: {user_info.get('weight_kg')}kg\n"
         f"- Meal type: {user_info.get('mealtype')}\n"
-        f"- Fitness goal: {user_info.get('goal')}\n\n"
+        f"- Fitness goal: {user_info.get('goal')}\n"
+        f"- IMPORTANT! Dietary restrictions: {user_info.get('dietary_restrictions')}\n\n"
     )
     human_prompt = (
         f"{user_info_text}"
