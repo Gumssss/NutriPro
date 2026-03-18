@@ -67,7 +67,7 @@ with gr.Blocks(title="JOE") as demo:
     with gr.Column(elem_classes="header-text"):
         gr.Markdown("# JOE")
         gr.Markdown(
-            "Hi, I'm a JOE, an AI Recipe Suggestion Assistant developed by Johnny, Oisin and Elliot "
+            "Hi, I'm JOE, an AI Recipe Suggestion Assistant developed by Johnny, Oisin, and Elliot! "
             
         )
 
@@ -75,7 +75,7 @@ with gr.Blocks(title="JOE") as demo:
         # Left: Input area
         with gr.Column(scale=1):
             with gr.Column(variant="panel", elem_classes="custom-card"):
-                gr.Markdown("### 📸 1. Basic Info")
+                gr.Markdown("### 📸 Ingredients")
                 food_image = gr.Image(label="Ingredients Photo", type="pil", show_label=False)
                 
                 meal_type = gr.Radio(
