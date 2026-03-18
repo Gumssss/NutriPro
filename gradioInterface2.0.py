@@ -76,7 +76,7 @@ with gr.Blocks(title="JOE") as demo:
         with gr.Column(scale=1):
             with gr.Column(variant="panel", elem_classes="custom-card"):
                 gr.Markdown("### 📸 1. Basic Info")
-                food_image = gr.Image(label="Ingredients Photo", type="filepath", show_label=False)
+                food_image = gr.Image(label="Ingredients Photo", type="pil", show_label=False)
                 
                 meal_type = gr.Radio(
                     choices=["Breakfast", "Lunch", "Dinner", "Snack", "Other"],
