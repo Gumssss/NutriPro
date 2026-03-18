@@ -2,11 +2,10 @@ from agents_chain.main_langchain import build_master_graph
 import io
 from PIL import Image
 import numpy as np
-#Will contain the functions for talking to the bots
-#Change as needed
+#Contain the functions for talking to the bots
 #The string that is returned will be output to the user
 
-def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preferences):    
+def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preferences,height_cm=None,weight_kg=None,age=None,gender=None):    
     if food_image is None:
         return "Please upload an image of your ingredients first!"
     
@@ -29,6 +28,16 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
         "dietary_restrictions": dietary_restrictions
         # Add other user info if needed (height, weight, etc.)
     }
+
+    # Add optional details if provided
+    if height_cm is not None:
+        user_info["height_cm"] = height_cm
+    if weight_kg is not None:
+        user_info["weight_kg"] = weight_kg
+    if age is not None:
+        user_info["age"] = age
+    if gender is not None:
+        user_info["gender"] = gender
 
     # --- Build and compile the master graph ---
     agent = build_master_graph()
@@ -55,7 +64,8 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
     formatted = "Based on your ingredients and preferences:\n\n"
     for i, r in enumerate(recipes, 1):
         name = r.get("name", f"Recipe {i}")
-        calories = r.get("calories", "N/A")
-        formatted += f"- {name} (Calories: {calories})\n"
+        recipe = r.get("instructions", f"Recipe {i}")
+        calories = r.get("kcal", "N/A")
+        formatted += f"- {name} - {recipe} - (Calories: {calories})\n"
 
     return formatted
