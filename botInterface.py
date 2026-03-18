@@ -58,16 +58,32 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
     ingredients = result_state.get("ingredients", [])
     recipes = result_state.get("recipes", [])
 
-    if not recipes:
-        return "The AI could not generate recipes for these ingredients."
 
-    formatted = "Based on your ingredients and preferences:\n\n"
+    # Build a list of recipe names at the top
+    recipe_names = [r.get("name", f"Recipe {i+1}") for i, r in enumerate(recipes)]
+    formatted = "**Based on your ingredients and preferences here are your recommended recipes:** \n" + " | ".join(recipe_names) + "\n\n"
+
     for i, r in enumerate(recipes, 1):
+        formatted += "-"*60 + "\n"
         name = r.get("name", f"Recipe {i}")
-        recipe = r.get("instructions","")
+        recipe_steps = r.get("instructions", [])
         calories = r.get("kcal", "N/A")
-        #recipe is a list of strings
-        steps = "\n".join([f"- {step}" for step in recipe])
-        formatted += f"**{name}** (Calories: {calories})\n{'-'*30}\n{steps}\n\n"
+        recipe_ingredients = r.get("ingredients", [])  # list of ingredients
+
+        # Format steps as bullets
+        steps = "\n".join([f"- {step}" for step in recipe_steps])
+
+        # Ingredients as bullets
+        ingredients_list = "\n".join([
+            f"- {ing.get('name', 'Unknown')}: {ing.get('quantity', '')}" 
+            for ing in recipe_ingredients
+        ])
+
+        # Combine everything
+        formatted += f"**{name}** (Calories: {calories})\n{'-'*30}\n"
+        if ingredients_list:
+            formatted += f"**Ingredients:**\n{ingredients_list}\n{'-'*30}\n"
+        formatted += f"**Recipe:**\n{steps}\n\n"
 
     return formatted
+
