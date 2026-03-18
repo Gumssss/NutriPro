@@ -16,6 +16,7 @@ class AgentState(TypedDict):
     user_info: Optional[dict]
     ingredients: Optional[List[Ingredient]]
     recipes: Optional[list]
+    #chat_history: Optional[List[BaseMessage]] #Uncomment this line when you are ready to integrate chatbot
 
 def extract_first_json(text: str) -> str:
     text = text.strip()
