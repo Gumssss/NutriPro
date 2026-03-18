@@ -6,7 +6,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from .utils import extract_first_json, Ingredient, AgentState
 
 recipe_model = ChatBedrockConverse(
-    model="deepseek.v3.2",
+    model="qwen.qwen3-vl-235b-a22b",
     region_name="eu-west-2",
     temperature=0.0,
 )
@@ -53,8 +53,9 @@ def run_recipe_generator_local(user_info: dict, ingredients: List[Ingredient], c
         f"{user_info_text}"
         f"The available ingredients (detected from the image) are given below as a JSON array:\n"
         f"{ingredients_json}\n\n"
-        "Generate exactly 3 recipes that use these ingredients where reasonable, following the required JSON schema." \
+        "Generate exactly 3 recipes for one person that use these ingredients where reasonable, following the required JSON schema." \
         "The only assumed ingredients should be oils, and seasonings - everything else must be from the list of ingredients"
+        "The recipes do not have to use the entire quantity of ingredients"
     )
     state_messages.append(HumanMessage(content=human_prompt))
 
