@@ -14,6 +14,7 @@ FOOD_SYSTEM_MESSAGE = SystemMessage(
     content=(
         "This is a VISION-ONLY agent, and cannot assume the existance of items"
         "Identify all raw food ingredients and their quantities in grams in this image."
+        "Do not repeat ingredient items if there are multiple of the same kind"
         "return a JSON array of these food ingredients only (no extra text). Each ingredient object must have:\n"
         "{\"name\": \"string\", \"quantity\": \"int\"}\n\n"
     )
