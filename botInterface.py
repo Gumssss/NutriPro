@@ -64,8 +64,10 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
     formatted = "Based on your ingredients and preferences:\n\n"
     for i, r in enumerate(recipes, 1):
         name = r.get("name", f"Recipe {i}")
-        recipe = r.get("instructions", f"Recipe {i}")
+        recipe = r.get("instructions","")
         calories = r.get("kcal", "N/A")
-        formatted += f"- {name} - {recipe} - (Calories: {calories})\n"
+        #recipe is a list of strings
+        steps = "\n".join([f"- {step}" for step in recipe])
+        formatted += f"**{name}** (Calories: {calories})\n{'-'*30}\n{steps}\n\n"
 
     return formatted
