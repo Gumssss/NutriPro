@@ -9,7 +9,6 @@ with gr.Blocks(title="Recipe Suggestion Assistant 🍽️") as demo:
         "personalized suggestions."
     )
 
-    # Two-column layout
     with gr.Row():
         # Left column: inputs
         with gr.Column():
@@ -39,13 +38,16 @@ with gr.Blocks(title="Recipe Suggestion Assistant 🍽️") as demo:
                         label="Gender"
                     )
 
-            submit_btn = gr.Button("Get Recipes")
+            # Buttons side by side
+            with gr.Row():
+                submit_btn = gr.Button("Get Recipes")
+                clear_btn = gr.Button("Clear")
 
         # Right column: output
         with gr.Column():
             output = gr.Textbox(label="Suggested Recipes", lines=20)
 
-    # Connect the button
+    # Connect buttons
     submit_btn.click(
         fn=suggest_recipes,
         inputs=[
@@ -59,6 +61,23 @@ with gr.Blocks(title="Recipe Suggestion Assistant 🍽️") as demo:
             gender
         ],
         outputs=output
+    )
+
+    # Clear button resets all inputs and outputs
+    clear_btn.click(
+        fn=lambda: (None, None, None, None, None, None, None, None, ""),
+        inputs=[],
+        outputs=[
+            food_image,
+            meal_type,
+            dietary_restrictions,
+            meal_preferences,
+            height_cm,
+            weight_kg,
+            age,
+            gender,
+            output
+        ]
     )
 
 # Launch the app
