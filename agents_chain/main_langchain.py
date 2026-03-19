@@ -20,4 +20,4 @@ def build_master_graph():
     graph.add_edge("calories", "recipes")
     graph.add_edge("recipes", END)
 
-    return graph.compile() Generated recipes ---")
+    return graph.compile() #Generated recipes ---")

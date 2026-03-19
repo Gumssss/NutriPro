@@ -75,7 +75,7 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
 
         # Ingredients as bullets
         ingredients_list = "\n".join([
-            f"- {ing.get('name', 'Unknown')}: {ing.get('quantity', '')}" 
+            f"- {ing.get('name', 'Unknown')}: {ing.get('quantity', '') if ing.get('quantity','')[-1] == "g" else ing.get('quantity','') + "g"}" 
             for ing in recipe_ingredients
         ])
 
