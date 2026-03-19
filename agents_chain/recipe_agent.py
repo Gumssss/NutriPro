@@ -46,7 +46,8 @@ def run_recipe_generator_local(user_info: dict, ingredients: List[Ingredient], c
         f"- Height: {user_info.get('height_cm')}cm\n"
         f"- Weight: {user_info.get('weight_kg')}kg\n"
         f"- Meal type: {user_info.get('mealtype')}\n"
-        f"- User preferences: {user_info.get('goal')}\n"
+        f"- User preferences: {user_info.get('preference')}\n"
+        f"- Fitness goals: {user_info.get('goal')}\n"
         f"- IMPORTANT! Dietary restrictions: {user_info.get('dietary_restrictions')}\n\n"
     )
     human_prompt = (

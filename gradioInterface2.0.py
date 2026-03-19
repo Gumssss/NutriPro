@@ -94,6 +94,11 @@ with gr.Blocks(title="JOE") as demo:
                     placeholder="E.g., high-protein, Italian..."
                 )
 
+                fitness_goals = gr.Textbox(
+                    label="Fitness goals (optional)",
+                    placeholder="E.g., weight loss, muscle gain, maintenance..."
+                )
+
                 # Body data accordion
                 with gr.Accordion("👤 Optional Personal Details", open=False):
                     with gr.Row():

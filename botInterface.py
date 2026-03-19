@@ -5,7 +5,7 @@ import numpy as np
 #Contain the functions for talking to the bots
 #The string that is returned will be output to the user
 
-def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preferences,height_cm=None,weight_kg=None,age=None,gender=None):    
+def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preferences,fitness_goals,height_cm=None,weight_kg=None,age=None,gender=None):    
     if food_image is None:
         return "Please upload an image of your ingredients first!"
     
@@ -24,7 +24,8 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
     # --- Build user info dictionary for AI ---
     user_info = {
         "mealtype": meal_type,
-        "goal": meal_preferences,
+        "preference": meal_preferences,
+        "goal": fitness_goals,
         "dietary_restrictions": dietary_restrictions
         # Add other user info if needed (height, weight, etc.)
     }
@@ -78,7 +79,7 @@ def suggest_recipes(food_image, meal_type, dietary_restrictions, meal_preference
             f"- {ing.get('name', 'Unknown')}: {ing.get('quantity', '')}"
             for ing in recipe_ingredients
         ])
-        
+
         # Combine everything
         formatted += f"**{name}** (Calories: {calories})\n{'-'*30}\n"
         if ingredients_list:
