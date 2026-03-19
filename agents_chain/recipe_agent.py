@@ -67,6 +67,7 @@ def run_recipe_generator_local(user_info: dict, ingredients: List[Ingredient], c
         json_text = extract_first_json(raw)
         parsed = json.loads(json_text)
         if isinstance(parsed, list):
+            print("[DEBUG] Final parsed ingredients Recipe Agent:", parsed)
             return parsed
         else:
             return []
