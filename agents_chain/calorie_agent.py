@@ -10,10 +10,10 @@ from langchain_community.tools import DuckDuckGoSearchRun
 
 
 # Define custom search tool for agent usage
-duck_tool = DuckDuckGoSearchRun(description="Only search calories.info")
-custom_tool = duck_tool.bind(query_filter="site:https://www.calories.info")
+duck_tool = DuckDuckGoSearchRun(description="Only search for calorific information on the give websites")
+custom_tool = duck_tool.bind(query_filter="(site:calories.info OR site:webmd.com OR site:myfitnesspal.com)")
 
-@tool("CalorieSearch", description="Search calories.info for ingredient calorie values")
+@tool("CalorieSearch", description="Search sites for ingredient calorie values")
 def calorie_search(query: str) -> str:
     return custom_tool.run(query)
 # ----------------------------------------------------------------
