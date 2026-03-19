@@ -55,6 +55,7 @@ def run_foodvision_on_image_local(image_path: str, conversation_primer: Optional
     except Exception:
         ingredients = []
 
+    print("[DEBUG] Final parsed ingredients from Food_image agent:", ingredients)
     return ingredients
 
 # Compatibility wrapper for langgraph node
