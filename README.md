@@ -22,11 +22,17 @@ JOE is an AI recipe creator. Upload a photo of the ingredients you have availabl
   ```
 - Keep credentials valid during use.
 
+
 ## Hosting publicly
+
 To access JOE from another device (phone/tablet):
+
 1. In `gradioInterface2.0.py`, change the final launch line from:
-   ```python
+
+```python
 demo.launch(theme=theme, css=css)
+
+
    ```
    to:
    ```python
@@ -76,35 +82,3 @@ Here are some pre-selected images that you can copy and paste into JOE for testi
 
 
 ## Appendix 2 - example output
-```
-Based on your ingredients and preferences here are your recommended recipes: Grilled Vegetable Salad | Veggie Stir Fry
-
-------------------------------------------------------------
-**Grilled Vegetable Salad** (Calories: 250)
-----------------------------------------------
-**Ingredients:**
-- Tomato: 2 medium
-- Cucumber: 1 whole
-- Bell Pepper: 1 whole
-----------------------------------------------
-**Recipe:**
-- Wash all vegetables thoroughly
-- Cut into bite-sized pieces
-- Arrange on a plate
-- Drizzle with olive oil and lemon juice
-- Serve immediately
-
-------------------------------------------------------------
-**Veggie Stir Fry** (Calories: 320)
-----------------------------------------------
-**Ingredients:**
-- Broccoli: 200g
-- Carrots: 1 medium
-- Onion: 1 small
-----------------------------------------------
-**Recipe:**
-- Heat oil in a wok
-- Add onions and cook until translucent
-- Add vegetables and stir fry until tender
-- Add sauce and serve with rice
-```
