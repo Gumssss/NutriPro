@@ -10,8 +10,8 @@ from langchain_community.tools import DuckDuckGoSearchRun
 
 
 # Define custom search tool for agent usage
-duck_tool = DuckDuckGoSearchRun(description="Only search for calorific information on the give websites")
-custom_tool = duck_tool.bind(query_filter="(site:calories.info OR site:webmd.com OR site:myfitnesspal.com)")
+duck_tool = DuckDuckGoSearchRun(description="Only search for calorific information on the given websites")
+custom_tool = duck_tool.bind(query_filter="site:calories.info OR site:webmd.com OR site:myfitnesspal.com")
 
 @tool("CalorieSearch", description="Search sites for ingredient calorie values")
 def calorie_search(query: str) -> str:
@@ -57,7 +57,6 @@ def run_calorie_generator_local(ingredients: List[Ingredient], conversation_prim
     try:
         # Always convert to string and use regex to extract AIMessage(content=...)
         result_str = str(result)
-        import re
         match = re.search(r"AIMessage\(content='(\[.*?\])", result_str, re.DOTALL)
         if not match:
             raise ValueError("No AIMessage(content=...) JSON found in agent output")
@@ -79,7 +78,7 @@ def run_calorie_generator_local(ingredients: List[Ingredient], conversation_prim
     except Exception as e:
         print("[DEBUG] Exception in calorie agent:", e)
         return []
-    print("[DEBUG] Final parsed ingredients:", ingredients_out)
+    print("[DEBUG] Final parsed ingredients Calorie Agent:", ingredients_out)
     return ingredients_out
 
 # Compatibility wrapper for langgraph node
