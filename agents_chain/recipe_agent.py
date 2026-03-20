@@ -22,13 +22,11 @@ SYSTEM_JSON_INSTRUCTION = SystemMessage(
         "    \"ingredients\": [\n"
         "      {\"name\": \"string\", \"quantity\": \"string\"}\n"
         "    ],\n"
-        "    \"instructions\": [\"string\", ...],\n"
-        "    \"protein\": number,\n"
-        "    \"carbohydrates\": number\n"
+        "    \"instructions\": [\"string\", ...]\n"
         "  }\n"
         "]\n\n"
         "Do NOT include any explanation, commentary, markdown, or extra fields. Do NOT include units inside numeric fields. "
-        "Return exactly three recipes that suit the user's provided information and fitness goals. If you cannot produce valid JSON, return []"
+        "Return exactly three recipes that suit the user's provided information and fitness goals"
     )
 )
 
@@ -54,9 +52,10 @@ def run_recipe_generator_local(user_info: dict, ingredients: List[Ingredient], c
         f"{user_info_text}"
         f"The available ingredients (detected from the image) are given below as a JSON array:\n"
         f"{ingredients_json}\n\n"
-        "Generate exactly 3 recipes for one person that use these ingredients where reasonable, following the required JSON schema." \
+        "Generate exactly 3 recipes that use these ingredients, following the required JSON schema." \
         "The only assumed ingredients should be oils, and seasonings - everything else must be from the list of ingredients"
-        "The recipes do not have to use the entire quantity of ingredients"
+        "The recipes do not have to use the entire quantity of available ingredients"
+        "The recipes should be tailored to the user's needs and goals based on what you are given about the user"
     )
     state_messages.append(HumanMessage(content=human_prompt))
 
