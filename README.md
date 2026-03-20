@@ -18,7 +18,7 @@ JOE is an AI recipe creator. Upload a photo of the ingredients you have availabl
 - JOE requires AWS Bedrock access to run the AI pipeline.
 - Ensure your AWS credentials are set in the environment (e.g., `~/.aws/credentials`) or create a `.env` file in the project root with keys like:
   ```text
-  OPENAI_API_KEY=your_api_key_here
+  AWS_BEARER_TOKEN_BEDROCK=your_api_key_here
   ```
 - Keep credentials valid during use.
 
