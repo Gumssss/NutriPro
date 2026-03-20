@@ -1,21 +1,60 @@
 import json
-import re  # <-- added to parse kcal numbers from search results
 from typing import List, Optional, Union
 from langchain_aws import ChatBedrockConverse
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain.agents import create_agent
 from langchain.tools import tool
 from .utils import extract_first_json, Ingredient, AgentState
-from langchain_community.tools import DuckDuckGoSearchRun
-
-
 # Define custom search tool for agent usage
-duck_tool = DuckDuckGoSearchRun(description="Only search for calorific information on the given websites")
-custom_tool = duck_tool.bind(query_filter="(site:calories.info OR site:webmd.com OR site:myfitnesspal.com)")
+from urllib.parse import urlparse
+from langchain_core.tools import tool
+from ddgs import DDGS
 
-@tool("CalorieSearch", description="Search sites for ingredient calorie values")
+ALLOWED_DOMAINS = {
+    "calories.info",
+    "webmd.com",
+    "myfitnesspal.com",
+}
+
+def _normalize_host(url: str) -> str:
+    host = urlparse(url).netloc.lower().split(":")[0]
+    if host.startswith("www."):
+        host = host[4:]
+    return host
+
+def _domain_allowed(url: str) -> bool:
+    return _normalize_host(url) in ALLOWED_DOMAINS
+
+def _site_query(query: str) -> str:
+    site_part = " OR ".join(f"site:{domain}" for domain in sorted(ALLOWED_DOMAINS))
+    return f"({query}) ({site_part})"
+
+@tool(
+    "CalorieSearch",
+    description="Search only calories.info, webmd.com, and myfitnesspal.com",
+)
 def calorie_search(query: str) -> str:
-    return custom_tool.run(query)
+    search_query = _site_query(query)
+
+    try:
+        with DDGS() as ddgs:
+            raw_results = list(ddgs.text(search_query, max_results=10))
+    except Exception as e:
+        return json.dumps({"error": f"search failed: {str(e)}"}, indent=2)
+
+    filtered = []
+    for r in raw_results:
+        url = r.get("href") or r.get("link") or ""
+        if url and _domain_allowed(url):
+            filtered.append(
+                {
+                    "title": r.get("title", ""),
+                    "link": url,
+                    "snippet": r.get("body") or r.get("snippet") or "",
+                }
+            )
+
+    return json.dumps(filtered, indent=2)
 # ----------------------------------------------------------------
 
 # System prompt for agent
@@ -24,7 +63,7 @@ SYSTEM_JSON_INSTRUCTION = SystemMessage(
         "return a JSON array of these food ingredients only (no extra text). Each ingredient object must have:\n"
         "{\"name\": \"string\", \"quantity\": \"int\", \"calories\": \"int\"}\n\n"
         "Do NOT include any explanation, commentary, markdown, or extra fields. Do NOT include units inside numeric fields. "
-        "The calorific value within the JSON must be the calories of the quantity of the food in the JSON. If you cannot produce valid JSON, return []"
+        "The calorific value within the JSON must be the calories of the quantity of the food in the JSON"
     )
 )
 
@@ -56,12 +95,19 @@ def run_calorie_generator_local(ingredients: List[Ingredient], conversation_prim
     result = agent.invoke({"messages": [HumanMessage(content=prompt)]})
     try:
         # Always convert to string and use regex to extract AIMessage(content=...)
-        result_str = str(result)
-        match = re.search(r"AIMessage\(content='(\[.*?\])", result_str, re.DOTALL)
-        if not match:
-            raise ValueError("No AIMessage(content=...) JSON found in agent output")
-        output = match.group(1)
-        json_text = extract_first_json(output)
+        ai_msg = next(
+            (m for m in reversed(result["messages"]) if isinstance(m, AIMessage)),
+            None,
+        )
+        if ai_msg is None:
+            print("[DEBUG] No AIMessage found in result:", result)
+            return []
+
+        content = ai_msg.content
+        if not isinstance(content, str):
+            content = json.dumps(content, ensure_ascii=False)
+
+        json_text = extract_first_json(content)
         parsed = json.loads(json_text)
         ingredients_out: List[Ingredient] = []
         if isinstance(parsed, list):
