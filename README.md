@@ -20,7 +20,7 @@ JOE is an AI recipe creator. Upload a photo of the ingredients you have availabl
   ```text
   AWS_BEARER_TOKEN_BEDROCK=your_api_key_here
   ```
-- Keep credentials valid during use.
+- Keep credentials up to date during use.
 
 
 ## Hosting publicly
@@ -44,11 +44,11 @@ demo.launch(theme=theme, css=css, share=True)
 Alternative: upload your phone photo to the computer and use the app locally.
 
 ## Common problems
-- Each agent logs intermediate results in the terminal. Check those outputs for debugging.
-- URL links returned by Gradio are valid only while the app is running and may change each run.
+For any problems, each agent logs intermediate results in the terminal. Check those outputs for debugging.
+- URL links returned by Gradio are valid only while the code is running and may change each run.
 - Immediate recipe generation errors often indicate invalid or expired credentials. Refresh credentials and try again.
 - Phone camera access may fail for some OS/browser combos; use file upload instead.
-- If no ingredients are detected, the AI may produce irrelevant recipes. If no recipes appear, the model sometimes fails on contrived edge inputs.
+- If no ingredients are detected, the AI may produce irrelevant recipes. If it can't think of a recipe then no recipe will be returned. (These only happen for us on contrived edge cases)
 - Old versions had calorie search errors due web scraping restrictions. This is now fixed by domain whitelisting (`calories.info`, `webmd.com`, `myfitnesspal.com`). If you see calorie search errors, upgrade to the latest version.
 
 ## Architecture Overview
