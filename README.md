@@ -18,11 +18,11 @@
 
 **NutriPro** is an intelligent nutrition recipe system that uses advanced computer vision and AI technology to help users create personalized recipes based on available ingredients. Simply snap a photo of your ingredients, and NutriPro can:
 
-- 🔍 **Smart Recognition** of all your ingredients
-- 📊 **Precise Calculation** of nutrition and calorie information
+- 🔍 **Picture input** of all your ingredients
+- 📊 **Calorie Calculation** Nutrition information
 - 👨‍🍳 **Personalized Recommendations** of recipes suited for you
 
-Whether you're a fitness enthusiast, a dieter, or a food adventurer, NutriPro helps you make smarter dietary choices!
+Whether you're a fitness enthusiast, a dieter, or a food adventurer, NutriPro helps to make smarter dietary choices for everyone!
 
 ---
 
@@ -37,7 +37,7 @@ Whether you're a fitness enthusiast, a dieter, or a food adventurer, NutriPro he
 | 🚫 **Dietary Restrictions** | Respects allergies and vegetarian preferences |
 | 👤 **User Profiles** | Customized recommendations based on height, weight, and age |
 | 💻 **Modern UI** | Beautiful Gradio Web interface |
-| 🔗 **API Interface** | Complete backend API support |
+
 
 ---
 
@@ -67,66 +67,11 @@ git --version
 
 ---
 
-## 🚀 Installation Guide
 
-### Step 1️⃣: Clone the Repository
-
-```bash
-git clone https://github.com/yourusername/NutriPro.git
-cd NutriPro
-```
-
-### Step 2️⃣: Create a Virtual Environment (Recommended)
-
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS / Linux
-python -m venv venv
-source venv/bin/activate
-```
-
-### Step 3️⃣: Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Main dependencies to install include:
-- `gradio` - Web interface framework
-- `langchain` - AI agent framework
-- `langgraph` - Workflow orchestration
-- `pillow` - Image processing
-- `python-dotenv` - Environment variable management
-
-### Step 4️⃣: Configure Environment Variables
-
-Create a `.env` file in the project root directory:
-
-```bash
-cp .env.example .env
-```
-
-Edit the `.env` file and add your API keys (e.g., OpenAI API Key):
-
-```env
-OPENAI_API_KEY=your_api_key_here
-# Other configurations...
-```
-
-### Step 5️⃣: Verify Installation
-
-```bash
-python -c "import gradio; import langchain; print('✅ All dependencies installed successfully!')"
-```
-
----
 
 ## 💡 Usage Guide
 
-### Method 1: Web User Interface (Recommended)
+### Web User Interface 
 
 ```bash
 # Start the Gradio Web interface
@@ -155,39 +100,6 @@ Then open in your browser: `http://localhost:7860`
 
 </details>
 
-### Method 2: Python API
-
-```python
-from botInterface import suggest_recipes
-from PIL import Image
-
-# Load ingredient image
-food_image = Image.open("your_ingredients.jpg")
-
-# Get recipe suggestions
-result = suggest_recipes(
-    food_image=food_image,
-    meal_type="lunch",
-    dietary_restrictions="vegetarian",
-    meal_preferences="grilled",
-    fitness_goals="weight_loss",
-    height_cm=170,
-    weight_kg=70,
-    age=25,
-    gender="M"
-)
-
-print(result)
-```
-
-### Method 3: Command Line Interface
-
-```bash
-python botInterface.py
-# Follow prompts to input parameters and image path
-```
-
----
 
 ## 📊 Output Example
 
@@ -243,28 +155,6 @@ User Input → Food Recognition → Nutrition Calculation → Recipe Generation 
 
 ---
 
-## 🔧 Advanced Configuration
-
-### Customize AI Model
-
-Edit `agents_chain/main_langchain.py` to change the model used:
-
-```python
-# Switch to other LLM models
-from langchain_openai import ChatOpenAI
-llm = ChatOpenAI(model="gpt-4", temperature=0.7)
-```
-
-### Adjust Vision Recognition Accuracy
-
-In `agents_chain/food_image_converter.py`, adjust:
-
-```python
-# Modify recognition confidence threshold
-CONFIDENCE_THRESHOLD = 0.75
-```
-
----
 
 ## 🤝 Contributing Guide
 
