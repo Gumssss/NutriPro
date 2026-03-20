@@ -11,7 +11,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 
 # Define custom search tool for agent usage
 duck_tool = DuckDuckGoSearchRun(description="Only search for calorific information on the given websites")
-custom_tool = duck_tool.bind(query_filter="site:calories.info OR site:webmd.com OR site:myfitnesspal.com")
+custom_tool = duck_tool.bind(query_filter="(site:calories.info OR site:webmd.com OR site:myfitnesspal.com)")
 
 @tool("CalorieSearch", description="Search sites for ingredient calorie values")
 def calorie_search(query: str) -> str:
