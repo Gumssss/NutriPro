@@ -78,7 +78,7 @@ Here are some pre-selected images that you can copy and paste into JOE for testi
 ![35eed88aed9cc19e7a840a2cd9ba9d4c](https://github.com/user-attachments/assets/25893e7c-c093-4465-aca8-c7a0c11fcbff)
 ![a56a826b6e9f867805b5e83f5963518b](https://github.com/user-attachments/assets/d4229a35-a9b8-4f05-9f56-7581c709174c)
 ![206b2dd17d92378e16055b6c347ecd1d](https://github.com/user-attachments/assets/64060fef-0bfd-4ad7-b1fd-eaf753fcf5e2)
-![36d0399d33d6b06868f2885931e6fe79](https://github.com/user-attachments/assets/0f553bf4-1fd6-4249-8bd6-b8dc14aff674)
+
 
 
 ## Appendix 2 - example output
