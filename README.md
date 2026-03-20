@@ -1,7 +1,7 @@
 # JOE - AI Recipe Creator
 
 ## Overview
-JOE is an AI recipe creator. Upload a photo of the ingredients you have available and any requirements you have, and JOE will give you three delicious recipes you could make.
+JOE is an AI recipe creator. Upload a photo of the ingredients you have available and any requirements you have, and JOE will give you three delicious recipes you could make. We made JOE as a project over four days.
 
 ## How to run
 1. Ensure all requirements are installed on your device. A `requirements.txt` exists in this repository; run `pip install -r requirements.txt`.
