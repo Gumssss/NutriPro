@@ -82,3 +82,9 @@ Here are some pre-selected images that you can copy and paste into JOE for testi
 
 
 ## Appendix 2 - example output
+<img width="1600" height="922" alt="67e6b7d5ee5fa2f9f4303a8e43a86fbc" src="https://github.com/user-attachments/assets/1fd8ea31-7e5f-45da-b15a-546f09cee789" />
+
+<img width="1600" height="929" alt="c5462a5660ee4f9fa9ca3ad1c2765181" src="https://github.com/user-attachments/assets/01aa0c1c-76d6-4c8a-b833-4a28664f1e4a" />
+
+
+
