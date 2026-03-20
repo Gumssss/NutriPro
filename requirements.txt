@@ -1,0 +1,35 @@
+# NutriPro - AI-powered Recipe Generator
+# Python 3.8+
+
+# === Web Framework ===
+gradio==4.26.0
+
+# === LLM & AI Frameworks ===
+langchain==0.1.20
+langchain-core==0.1.52
+langchain-aws==0.1.15
+langgraph==0.0.69
+
+# === Image Processing ===
+Pillow==10.2.0
+numpy==1.24.3
+
+# === Web & API ===
+requests==2.31.0
+
+# === Search & Web Tools ===
+duckduckgo-search==3.9.11
+
+# === Environment & Configuration ===
+python-dotenv==1.0.1
+
+# === Utilities ===
+typing-extensions==4.10.0
+
+# === Optional: Development & Testing ===
+# Uncomment if needed for development:
+# pytest==7.4.4
+# pytest-asyncio==0.23.3
+# black==24.1.1
+# flake8==7.0.0
+# mypy==1.8.0
